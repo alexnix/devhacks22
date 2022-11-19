@@ -1,0 +1,9 @@
+{
+  "museums": [
+    {
+      "id": 1,
+      "name": "Museum 1",
+      "cover": "app/images/museum1.jpeg"
+    }
+  ]
+}
