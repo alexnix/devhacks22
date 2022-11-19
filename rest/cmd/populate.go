@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"fmt"
+	"devhacks/pkg/pocketbase"
 
 	"github.com/spf13/cobra"
 )
@@ -9,7 +9,7 @@ import (
 var generateCmd = &cobra.Command{
 	Use:   "generate",
 	Short: "Generate dummy data",
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("generate called")
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return pocketbase.AddExhibits()
 	},
 }
