@@ -3,6 +3,8 @@ import ModalProvider from 'react-modal-pirate';
 import {BrowserRouter as Router,Route, Switch} from "react-router-dom";
 import MuseumsList from './pages/museums_list';
 import MuseumSingle from './pages/museum_single';
+import { useAuthStore } from './authStore';
+import { useEffect } from 'react';
 
 function MyRouter() {
   return (
@@ -34,6 +36,16 @@ function MyRouter() {
 
 function App() {
   const MP: any = ModalProvider as any;
+  const {loading, doAuth} = useAuthStore();
+
+  useEffect(() => {
+    doAuth();
+  }, [doAuth]);
+
+  if(loading) {
+    return <p>Loading</p>;
+  }
+
   return (
     <MP styles={{}}>
       <MyRouter/>

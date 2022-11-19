@@ -16,7 +16,7 @@ const Exhibits = () => {
                     <div className="border border-2 border-black rounded-lg p-2 mb-3 divide-y divide-gray-800">
                         {g}
                         {
-                            exhibits.filter((e) => e.cluster === g).map((e) => (
+                            exhibits.filter((e) => e.clusterID === g).map((e) => (
                                 <div className="p-2 flex items-center space-x-5 ">
                                     <div>
                                         <img className="w-20" src={e.img} alt={e.name} />

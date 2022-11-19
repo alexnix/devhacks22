@@ -1,48 +1,61 @@
 import create from 'zustand';
+import to from "await-to-js";
+import { z } from "zod";
+import { useAuthStore } from './authStore';
+import { REST_URL } from './constants';
 
-const exhibitsDummy = [
-    {
-        name: "Fier",
-        cluster: "Metal",
-        img: "https://z4y6y3m2.rocketcdn.me/blog/wp-content/uploads/2016/09/Magnetic-Pyrites.jpg"
-    },
-    {
-        name: "Aur",
-        cluster: "Metal",
-        img: "https://p.turbosquid.com/ts-thumb/s5/eJ4tYQ/Nb/goldmineral01_a0000/jpg/1631567616/600x600/fit_q87/82cde42f2862e3d59d6fdafebec208bd4b7e4d09/goldmineral01_a0000.jpg"
-    },
-    {
-        name: "Argint",
-        cluster: "Metal",
-        img: "https://geology.com/minerals/photos/silver-crystals.jpg"
-    },
-];
+export const ExhibitParser = z.object({
+    name: z.string(),
+    clusterID: z.string(),
+    img: z.string().url(),
+    description: z.string(),
+})
 
-type Any = any;
-
-interface Exhibit extends Any {}
+export type Exhibit = z.infer<typeof ExhibitParser>;
 
 interface MuseumStore {
     loading: boolean;
     exhibits: Exhibit[];
     fetchExhibits: () => Promise<void>,
-    addExhibit: (e: Exhibit) => Promise<void>,
+    addExhibit: (e: Exhibit) => Promise<boolean>,
 }
 
 const useMuseumStore = create<MuseumStore>()((set) => ({
     loading: true,
     exhibits: [],
     fetchExhibits: async () => {
-        setTimeout(() => {
-            set({
-                exhibits: exhibitsDummy,
-                loading: false,
-            })
-        }, 1000)
+        const r = await fetch(`${REST_URL}/api/collections/exhibits/records`, {
+            headers: {
+                "Authorization": useAuthStore.getState().token,
+            },
+        });
+        const json = await r.json();
+
+        set({
+            exhibits: json.items,
+            loading: false,
+        })
     },
-    addExhibit: async (e: Exhibit) => set((prev) => ({
-        exhibits: [...prev.exhibits, e],
-    }))
+    addExhibit: async (e: Exhibit) => {
+        const [err] = await to(fetch(`${REST_URL}/api/collections/exhibits/records`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": useAuthStore.getState().token   
+            },
+            body: JSON.stringify(e)
+        }));
+
+        if(err) {
+            return false;
+        }
+
+        set((prev) => ({
+            exhibits: [...prev.exhibits, e],
+        }));
+
+        return true;
+    }
 }))
 
 export {
