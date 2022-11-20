@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Cluster {
-	int id;
+	String id;
 	String name;
 }

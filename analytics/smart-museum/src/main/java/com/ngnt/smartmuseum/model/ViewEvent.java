@@ -7,9 +7,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class ViewEvent {
 
-	int id;
-	int userId;
-	int exhibitId;
-	int clusterId;
+	String id;
+	String userId;
+	String exhibitId;
+	String clusterId;
 	int timeSpentInSeconds;
 }
