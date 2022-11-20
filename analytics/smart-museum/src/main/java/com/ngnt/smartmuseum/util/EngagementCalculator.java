@@ -22,8 +22,8 @@ public class EngagementCalculator {
 		return getClusterEngagement(exhibitsInCluster, viewEvents);
 	}
 
-	public Set<Exhibit> getAllExhibitsInCluster(Set<Exhibit> exhibits, int clusterId) {
-		return exhibits.stream().filter(exhibit -> exhibit.getClusterId() == clusterId)
+	public Set<Exhibit> getAllExhibitsInCluster(Set<Exhibit> exhibits, String clusterId) {
+		return exhibits.stream().filter(exhibit -> exhibit.getClusterId().equals(clusterId))
 				.collect(Collectors.toSet());
 	}
 
@@ -37,7 +37,7 @@ public class EngagementCalculator {
 
 	public double getExhibitEngagement(Exhibit exhibit, Set<ViewEvent> viewEvents) {
 		return viewEvents.stream()
-				.filter(viewEvent -> viewEvent.getExhibitId() == exhibit.getId())
+				.filter(viewEvent -> viewEvent.getExhibitId().equals(exhibit.getId()))
 				.mapToDouble(viewEvent ->
 						getEngagementScore(exhibit.getDescription(),
 								viewEvent.getTimeSpentInSeconds()))
