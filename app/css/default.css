@@ -1,5 +1,210 @@
 body {
+  color: #fff;
+  background: rgb(32, 32, 32);
+}
+
+#main a {
+  color: rgb(229, 115, 62);
+  padding: 10px 15px 0 16px;
+  font-size: 16px;
+  text-transform: uppercase;
+  display: block;
+}
+#main > .screen {
+  width: 100vw;
+  height: 100vh;
+}
+#main > .screen > div {
+  width: 100vw;
+  min-height: 150px;
+  overflow: hidden;
+  float: left;
+  padding: 10px 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+#main > .screen > div > img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+#main > .screen > div > span {
+  text-transform: uppercase;
+  background: rgb(229, 115, 62);
+  border-radius: 10px;
+  display: block;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 12px;
+  margin-top: 20px;
+  color: rgb(32, 32, 32);
+  font-weight: bold;
+}
+
+.popup {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  z-index: 20001;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+}
+.popup a.close {
+  position: absolute;
+  display: block;
+  border-radius: 25px;
+  font-size: 25px;
+  line-height: 25px;
+  padding: 2px 11px;
   background: #000;
+  right: 10px;
+  top: 10px;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #777;
+  opacity: 0.5;
+}
+.popup h1 {
+  position: absolute;
+  top: 260px;
+  left: 16px;
+  display: block;
+  text-transform: capitalize;
+  overflow: visible;
+  font-size: 50px;
+  color: rgba(229, 115, 62, 0.5);
+}
+.popup .image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.popup .image:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 500px;
+  display: inline-block;
+  background: linear-gradient(to bottom, rgba(0, 47, 75, 0) 0%, rgba(0, 0, 0, 0.75) 50%, rgb(0, 0, 0) 100%);
+}
+.popup .image > img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+}
+.popup p {
+  position: absolute;
+  top: 320px;
+  color: #ccc;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  background: rgb(22, 22, 22);
+  height: 225px;
+  overflow: scroll;
+  border: 5px solid rgb(22, 22, 22);
+}
+
+#qrr-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: black;
+  opacity: 0.6;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 20000;
+}
+
+#qrr-container {
+  font-family: sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  /* width: 95%; */
+  /* height: 95%; */
+  /* margin: auto; */
+  display: none;
+  z-index: 20001;
+  border-radius: 10px 10px 0 0;
+  /* bottom: 0; */
+  margin-top: 40px;
+}
+#qrr-container h1 {
+  margin-top: 0;
+}
+#qrr-container #qrr-close {
+  position: absolute;
+  display: block;
+  border-radius: 25px;
+  font-size: 25px;
+  line-height: 25px;
+  padding: 2px 11px;
+  background: #000;
+  right: 10px;
+  top: 10px;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #777;
+  opacity: 0.5;
+}
+#qrr-container #qrr-loading-message {
+  text-align: center;
+  padding: 15px;
+  background-color: #eee;
+  width: 90%;
+  margin: 30px auto 0;
+}
+#qrr-container #qrr-canvas {
+  display: block;
+  overflow-x: scroll;
+  cursor: pointer;
+}
+#qrr-container #qrr-canvas.hidden {
+  display: none;
+}
+#qrr-container #qrr-output {
+  width: 90%;
+  max-height: 15%;
+  margin: 20px auto 10px;
+  background: #eee;
+  padding: 10px;
+  overflow-y: auto;
+  display: none;
+}
+#qrr-container #qrr-ok {
+  display: none;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 10px 50px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: green;
+  color: white;
+  border-radius: 10px;
+}
+#qrr-container #qrr-output-data {
+  display: none;
 }
 
 /*# sourceMappingURL=default.css.map */
