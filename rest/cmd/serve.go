@@ -27,6 +27,11 @@ var serveCmd = &cobra.Command{
 					Name: "exhibits",
 					Schema: schema.NewSchema(
 						&schema.SchemaField{
+							Name:     "name",
+							Required: true,
+							Type:     schema.FieldTypeText,
+						},
+						&schema.SchemaField{
 							Name:     "description",
 							Required: true,
 							Type:     schema.FieldTypeText,
@@ -40,6 +45,10 @@ var serveCmd = &cobra.Command{
 							Name:     "img",
 							Required: true,
 							Type:     schema.FieldTypeText,
+						},
+						&schema.SchemaField{
+							Name: "engagementScore",
+							Type: schema.FieldTypeText,
 						},
 					),
 				}
