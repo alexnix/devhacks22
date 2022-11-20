@@ -4,8 +4,8 @@ export class DataRetriever {
             museums: [
                 {
                     id: 1,
-                    name: "Museum",
-                    cover: "https://www.logomoose.com/wp-content/uploads/2017/10/museum_logo_pczohtas-01.png",
+                    name: "Muzeul De Geologie",
+                    cover: "https://geology.ro/wp-content/uploads/2022/07/logo-mgn-2022.jpg",
                 },
                 {
                     id: 2,
@@ -22,9 +22,9 @@ export class DataRetriever {
                 {
                     id: "30c05452-685c-11ed-9022-0242ac120002",
                     museumId: 1,
-                    name: "Mona Lisa",
-                    description: "Mona Lisa is a half-length portrait painting by the Italian Renaissance artist Leonardo da Vinci. It is considered an archetypal masterpiece of the Italian Renaissance, and has been described as the best known, the most visited, the most written about, the most sung about, the most parodied work of art in the world.",
-                    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/1200px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg"
+                    name: "AUR",
+                    description: "Aurul este elementul cunoscut din cele mai vechi timpuri. Fiind răspândit în stare nativă în natură, el se putea obține ușor în cantități mici. Se crede că aurul a fost descoperit înaintea cuprului. Cules sub forma unor bucăți strălucitoare din nisipurile râurilor și din depunerile aluvionare, aurul a fost dintotdeauna un metal de ornament, apreciat pentru luciul său galben, dar mai ales pentru stabilitatea sa față de agenții corozivi.",
+                    image: "https://cdn7.avanticart.ro/graveazapovesteata.ro/pictures/blog/129/La-producci%c3%b3n-de-oro-registrar%c3%a1-m%c3%adnimos-hist%c3%b3ricos-en-algunos-pa%c3%adses.jpg.jpg"
                 },
             ],
         };
