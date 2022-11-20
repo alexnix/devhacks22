@@ -1,13 +1,16 @@
 import { useReducer, useState } from "react";
 import {produce} from "immer";
-import { Exhibit, ExhibitParser, useMuseumStore } from "../../store";
+import { Exhibit, ExhibitParser, useCurrentMuseumStore } from "../../currentMuseumStore";
 import { useGalleries } from "./useGalleries";
 
 const INPUT_CN = "p-2 border border-black rounded-md";
 
-interface State {
-    data: Partial<Exhibit>,
-    isReady: boolean
+type State = {
+    data: Partial<Record<keyof Exhibit, any>>,
+    isReady: false,
+} | {
+    data: Exhibit,
+    isReady: true
 };
 
 type Action = 
@@ -22,7 +25,7 @@ function reducer(state: State, action: Action): State {
 
 const AddExhibit = () => {
     const galleries = useGalleries();
-    const {addExhibit} = useMuseumStore();
+    const {addExhibit} = useCurrentMuseumStore();
     const [gallery, setGallery] = useState(galleries[0]);
 
     const [newExhibitData, dispatch] = useReducer(reducer, {
@@ -34,7 +37,7 @@ const AddExhibit = () => {
 
     const onAdd = async () => {
         if(newExhibitData.isReady) {
-            addExhibit(newExhibitData.data as Exhibit)
+            addExhibit(newExhibitData.data);
         }
     }
 
