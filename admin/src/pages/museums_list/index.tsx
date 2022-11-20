@@ -12,7 +12,7 @@ const MuseumsList = () => {
 
     return (
         <div>
-        <h1 className='text-xl mb-5'>Muzee</h1>
+        <h1 className='text-xl font-bold mb-5'>Muzee</h1>
         <div className='flex flex-row space-x-2 mb-5'>
         {
           museums.map((m) => (

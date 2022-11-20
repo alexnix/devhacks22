@@ -32,7 +32,7 @@ const MuseumSingle = () => {
     return (
         <div>
             <small onClick={() => hist.goBack()} className="cursor-pointer">Back</small>
-            <h1>{museum?.name}</h1>
+            <h1 className="text-xl font-bold">{museum?.name}</h1>
             
             <div className="flex mb-5 mt-5">
                 {["Exhibits","Visualize"].map(t => (
