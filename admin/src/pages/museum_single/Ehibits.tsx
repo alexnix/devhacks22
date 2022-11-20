@@ -1,12 +1,12 @@
 import { useOpen } from "react-modal-pirate";
 import AddButton from "../../atoms/AddButton";
-import { useMuseumStore } from "../../store";
+import { useCurrentMuseumStore } from "../../currentMuseumStore";
 import AddExhibit from "./AddExhibit";
 import { useGalleries } from "./useGalleries";
 
 const Exhibits = () => {
     const openModal = useOpen();
-    const {exhibits} = useMuseumStore();
+    const {exhibits} = useCurrentMuseumStore();
     const galleries = useGalleries(); 
 
     return (
