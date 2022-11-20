@@ -20,14 +20,17 @@ interface MuseumStore {
     addExhibit: (e: Exhibit) => Promise<boolean>,
 }
 
-const useMuseumStore = create<MuseumStore>()((set) => ({
+const headers = () => ({
+    "Content-Type": "application/json",
+    "Authorization": useAuthStore.getState().token,  
+});
+
+const useCurrentMuseumStore = create<MuseumStore>()((set) => ({
     loading: true,
     exhibits: [],
     fetchExhibits: async () => {
         const r = await fetch(`${REST_URL}/api/collections/exhibits/records`, {
-            headers: {
-                "Authorization": useAuthStore.getState().token,
-            },
+            headers: headers(),
         });
         const json = await r.json();
 
@@ -39,10 +42,7 @@ const useMuseumStore = create<MuseumStore>()((set) => ({
     addExhibit: async (e: Exhibit) => {
         const [err] = await to(fetch(`${REST_URL}/api/collections/exhibits/records`, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": useAuthStore.getState().token   
-            },
+            headers: headers(),
             body: JSON.stringify(e)
         }));
 
@@ -59,5 +59,5 @@ const useMuseumStore = create<MuseumStore>()((set) => ({
 }))
 
 export {
-    useMuseumStore
+    useCurrentMuseumStore
 };

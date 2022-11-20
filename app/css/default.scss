@@ -1,3 +1,246 @@
-body{
-  background: #000;
+$orange: rgb(229, 115, 62);
+
+body {
+  color: #fff;
+  background: rgb(32, 32, 32);
 }
+
+#main {
+  a {
+    color: $orange;
+    padding: 10px 15px 0 16px;
+    font-size: 16px;
+    text-transform: uppercase;
+    display: block;
+  }
+
+  & > .screen {
+    width: 100vw;
+    height: 100vh;
+
+    & > div {
+      width: 100vw;
+      min-height: 150px;
+      overflow: hidden;
+      float: left;
+      padding: 10px 15px;
+      border-radius: 10px;
+      text-align: center;
+
+      & > img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      & > span {
+        text-transform: uppercase;
+        background: $orange;
+        border-radius: 10px;
+        display: block;
+        padding: 10px 20px;
+        text-align: center;
+        font-size: 12px;
+        margin-top: 20px;
+        color: rgb(32, 32, 32);
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.popup {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 1);
+  z-index: 20001;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+
+  a.close {
+    position: absolute;
+    display: block;
+    border-radius: 25px;
+    font-size: 25px;
+    line-height: 25px;
+    padding: 2px 11px;
+    background: #000;
+    right: 10px;
+    top: 10px;
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #777;
+    opacity: .5;
+  }
+
+  h1 {
+    position: absolute;
+    top: 260px;
+    left: 16px;
+    display: block;
+    text-transform: capitalize;
+    overflow: visible;
+    font-size: 50px;
+    color: rgba(229, 115, 62, .5);
+    //text-shadow: 0px -2px 2px rgba(255,255,255,0.25);
+  }
+
+  .image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 500px;
+      display: inline-block;
+      background: linear-gradient(to bottom, rgba(0, 47, 75, 0) 0%, rgba(0, 0, 0, .75) 50%, rgba(0, 0, 0, 1) 100%);
+    }
+
+    & > img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  p {
+    position: absolute;
+    top: 320px;
+    color: #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    background: rgb(22, 22, 22);
+    height: 225px;
+    overflow: scroll;
+    border: 5px solid rgb(22, 22, 22);
+  }
+}
+
+#qrr-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: black;
+  opacity: 0.6;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 20000;
+}
+
+#qrr-container {
+  font-family: sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 1);
+  //padding: 10px;
+  /* width: 95%; */
+  /* height: 95%; */
+  /* margin: auto; */
+  display: none;
+  z-index: 20001;
+  border-radius: 10px 10px 0 0;
+  /* bottom: 0; */
+  margin-top: 40px;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  #qrr-close {
+    //position: absolute;
+    //right: 0;
+    //top: 0;
+    //margin-right: 10px;
+    //margin-top: -20px;
+    //font-size: 3em;
+    //cursor: pointer;
+    //color: #808080;
+    position: absolute;
+    display: block;
+    border-radius: 25px;
+    font-size: 25px;
+    line-height: 25px;
+    padding: 2px 11px;
+    background: #000;
+    right: 10px;
+    top: 10px;
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #777;
+    opacity: .5;
+
+  }
+
+  #qrr-loading-message {
+    text-align: center;
+    padding: 15px;
+    background-color: #eee;
+    width: 90%;
+    margin: 30px auto 0;
+  }
+
+  #qrr-canvas {
+    display: block;
+    //height: 65%;
+    //max-width: 90%;
+    overflow-x: scroll;
+    cursor: pointer;
+    //margin: 30px auto 10px;
+  }
+
+  #qrr-canvas.hidden {
+    display: none;
+  }
+
+  #qrr-output {
+    width: 90%;
+    max-height: 15%;
+    margin: 20px auto 10px;
+    background: #eee;
+    padding: 10px;
+    overflow-y: auto;
+    display: none;
+  }
+
+  #qrr-ok {
+    display: none;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 10px 50px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+  }
+
+  #qrr-output-data {
+    display: none;
+  }
+}
+
+

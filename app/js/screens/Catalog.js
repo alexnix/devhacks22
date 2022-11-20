@@ -1,46 +1,46 @@
-import { Screen } from "./Screen.js";
-import { DataRetriever } from "../dataRetriever.js";
+import {DataRetriever} from "../dataRetriever.js";
+import {MuseumPopup} from "./MuseumPopup.js";
 
-export class Catalog extends Screen {
-  constructor() {
-    super();
-    this.screenId = "catalog-screen";
-    this.dataRetriever = new DataRetriever();
-  }
-
-  show() {
-    super.show();
-    let list = $("<div></div>");
-    const museumList = this.dataRetriever.getDataFor("museums");
-    for (const i in museumList) {
-      list.append(this.getMuseum(museumList[i]));
+export class Catalog {
+    constructor() {
+        this.screenId = "catalog-screen";
+        this.dataRetriever = new DataRetriever();
+        this.museumPopup = new MuseumPopup();
     }
-    this.getDomEl().html(list);
-    this.getDomEl().append(
-      '<textarea id="qrReadLink"></textarea><input type="button" id="openreader-btn" value="Scan QRCode"/>'
-    );
-    $("#openreader-btn").qrCodeReader({
-      target: "#target-input",
-      audioFeedback: true,
-      multiple: true,
-      skipDuplicates: false,
-      callback: function (codes) {
-        console.log(codes);
-      },
-    });
-    // $("#openreader-btn").click();
-  }
 
-  getMuseum(data) {
-    return $(
-      "<div>" +
-        '<img src="' +
-        data.cover +
-        '">' +
-        "<title>" +
-        data.name +
-        "</title>" +
-        "</div>"
-    );
-  }
+    show() {
+        $(".screen").hide();
+        this.getDomEl().show();
+        const _self = this;
+        this.getDomEl().html("");
+        const museumList = this.dataRetriever.getMuseums();
+        for (const i in museumList) {
+            const museumDOM = $(this.getMuseum(museumList[i]));
+            museumDOM.click(function () {
+                _self.showMuseumPopup();
+            });
+            this.getDomEl().append(museumDOM);
+        }
+    }
+
+    showMuseumPopup() {
+        this.museumPopup.show();
+    }
+
+    getMuseum(data) {
+        return $(
+            "<div>" +
+            '<img src="' +
+            data.cover +
+            '">' +
+            "<span>" +
+            data.name +
+            "</span>" +
+            "</div>"
+        );
+    }
+
+    getDomEl() {
+        return $("#" + this.screenId);
+    }
 }
