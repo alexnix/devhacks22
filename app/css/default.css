@@ -116,6 +116,24 @@ body {
   overflow: scroll;
   border: 5px solid rgb(22, 22, 22);
 }
+.popup .like-btn {
+  background: url("../images/like-icon.png") #fff;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  text-indent: -9999px;
+  border: none;
+  border-radius: 25px;
+  margin-left: -25px;
+}
+.popup .like-btn.liked, .popup .like-btn:hover {
+  background-color: rgb(229, 115, 62);
+}
 
 #qrr-overlay {
   position: fixed;

@@ -1,10 +1,9 @@
-import {DataRetriever} from "../dataRetriever.js";
 import {ItemPopup} from "./ItemPopup.js";
 
 export class MuseumPopup {
-    constructor() {
+    constructor(dataRetriever) {
         this.museumId = null;
-        this.dataRetriever = new DataRetriever();
+        this.dataRetriever = dataRetriever;
         this.itemPopup = new ItemPopup(this);
     }
 
@@ -23,7 +22,9 @@ export class MuseumPopup {
                 _self.showItemPopup(code);
             },
         });
-        $("#qrCodeReaderTrigger").click();
+        setTimeout(function(){
+            $("#qrCodeReaderTrigger").click();
+        },1000);
     }
 
     showItemPopup(code) {

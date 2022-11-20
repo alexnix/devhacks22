@@ -1,11 +1,10 @@
-import {DataRetriever} from "../dataRetriever.js";
 import {MuseumPopup} from "./MuseumPopup.js";
 
 export class Catalog {
-    constructor() {
+    constructor(dataRetriever) {
         this.screenId = "catalog-screen";
-        this.dataRetriever = new DataRetriever();
-        this.museumPopup = new MuseumPopup();
+        this.dataRetriever = dataRetriever;
+        this.museumPopup = new MuseumPopup(this.dataRetriever);
     }
 
     show() {
